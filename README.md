@@ -1,7 +1,7 @@
 # d3mais
 Contém uma série de fachadas para criação de gráficos usando a biblioteca D3.
 
-## Principal script: <b style="color:red">main.js</b>
+## Principal script: <font color=#FF0000>main.js</font>
   
 	Script: main.js
 	Função: carregar todos os módulos
