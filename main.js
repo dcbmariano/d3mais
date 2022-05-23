@@ -6,7 +6,7 @@
 	Autor: diegomariano.com
 	Feito com Vanilla JavaScript (com JS raiz e sem framework nutella)
   -----------------------------------------------------------------------------
-*/
+*/ 
 
 // importações de módulos -----------------------------------------------------
 import { $, $$, print } from './src/modules/Atalhos.js'; // importa atalhos $, $$ e print()
