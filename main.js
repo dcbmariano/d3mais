@@ -23,12 +23,6 @@ import './node_modules/bootstrap/dist/js/bootstrap.bundle.js';  // importa boots
 // variáveis ------------------------------------------------------------------
 const altura = 600;
 
-const local = "#grafo";
-const local2 = "#barras";
-
-let largura_local = $(local).clientWidth; // pega a largura da div
-let largura_local2 = $(local2).clientWidth;
-
 // dados 
 const dados = await d3.json('./src/data/db_miserables.js');
 
@@ -37,15 +31,15 @@ const dados = await d3.json('./src/data/db_miserables.js');
 Grafo(
   dados, 
   {
-    elemento: local,
+    elemento: "#grafo",
+    largura:$("#grafo").clientWidth,
     id_vertice: d => d.id,
     grupo_vertice: d => d.group,
     titulo_vertice: d => `${d.id} (Grupo: ${d.group})`,
     //espessura_aresta: l => Math.sqrt(l.value),
-    espessura_aresta:40,
+    espessura_aresta:45,
     titulo_aresta: d => "Irregularidade: "+d.value,
     raio_vertice: 12,
-    largura:largura_local,
     altura: altura,
     atração:-50,
     //invalidation // a promise to stop the simulation when the cell is re-run
@@ -53,22 +47,45 @@ Grafo(
 );
 
 
-// plota o gráfico de barras => modules/Barras.js -----------------------------
+// plota o gráfico de barras VERTICAL => modules/Barras.js --------------------
 Barras(
   dados.nodes, // dados
   { // config
-    elemento: local2,
+    tipo: 'vertical',
+    elemento: "#barras_verticais",
+    largura: $("#barras_verticais").clientWidth,
     x: d=>d.id,
     y: d=>d.group,
     margem: { superior:20, inferior:100, esquerda:40, direita:0 },
     dominio_x: d3.groupSort(dados.nodes, ([d]) => -d.group, d => d.id),
     formato_y: "c", // pode ser: "%", "d", "f", "c", "r"
-    largura: largura_local2,
     altura: 600,
     rotulo_y: "Valor",
     tamanho_fonte_x:75,
     //tamanho_fonte_y:125,
     color: "steelblue"
+  }
+)
+
+// plota o gráfico de barras => modules/Barras.js HORIZONTAL ------------------
+Barras(
+  dados.nodes, // dados
+  { // config
+
+    tipo: 'horizontal',
+    
+    elemento: "#barras_horizontais",
+    largura: $("#barras_horizontais").clientWidth,
+    y: d=>d.id,
+    x: d=>d.group,
+    margem: { superior:20, inferior:10, esquerda:80, direita:0 },
+    //dominio_y: d3.groupSort(dados.nodes, ([d]) => -d.group, d => d.id), // ordenado
+    dominio_y: dados.nodes.map(d=>d.id),
+    formato_x: "c", // pode ser: "%", "d", "f", "c", "r"
+    rotulo_x: "Valor",
+    tamanho_fonte:100,
+    color: "steelblue",
+    tamanho_barra_horizontal:10
   }
 )
 

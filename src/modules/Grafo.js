@@ -37,7 +37,7 @@ export default function Grafo(
     atração, // valores mais comuns de -100 a 100
     origem_aresta = ({source}) => source, // para cada link como "d", retorna o identificador do vértice
     destino_aresta = ({target}) => target, // para cada link como "d", retorna o identificador do vértice
-    titulo_aresta = d => d.value, // título dado à aresta onde value é o nome da propriedade
+    titulo_aresta, // título dado à aresta onde value é o nome da propriedade
     cor_aresta = "#999", // cor da borda da aresta
     opacidade_aresta = 0.6, // opacidade da borda da aresta
     espessura_aresta = 1.5,//d=>d.value, //ou //1.5, // para cada link como "d", retorna uma largura de traço em pixels
@@ -119,7 +119,9 @@ export default function Grafo(
   if (L) link.attr("stroke", ({index: i}) => L[i]);
   if (G) node.attr("fill", ({index: i}) => cor_grupos(G[i]));
   if (T) node.attr("title", ({index: i}) => T[i]);
-  if (TA) link.attr("title", ({index: i}) => TA[i]);
+  if (titulo_aresta != undefined){
+   if (TA) link.attr("title", ({index: i}) => TA[i]);
+  }
   //if (T) node.append("title").text(({index: i}) => T[i]);
   if (invalidation != null) invalidation.then(() => simulation.stop());
 
