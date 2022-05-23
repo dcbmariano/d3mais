@@ -1,7 +1,7 @@
 # d3mais
 Contém uma série de fachadas para criação de gráficos usando a biblioteca D3.
 
-## Principal script: <i>main.js</i>
+## Principal script: <b style="color:red">main.js</b>
   
 	Script: main.js
 	Função: carregar todos os módulos
@@ -9,7 +9,7 @@ Contém uma série de fachadas para criação de gráficos usando a biblioteca D
 	Autor: diegomariano.com
 	Feito com Vanilla JavaScript (com JS raiz e sem framework nutella)
 
-### Sumário
+	Conteúdo:
 	1. importações de módulos 
 	2. variáveis importantes
 	3. plota o grafo
