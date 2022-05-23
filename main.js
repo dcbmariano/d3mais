@@ -6,9 +6,18 @@
 	Autor: diegomariano.com
 	Feito com Vanilla JavaScript (com JS raiz e sem framework nutella)
   -----------------------------------------------------------------------------
+  Sumário
+  -----------------------------------------------------------------------------
+   1. importações de módulos 
+   2. variáveis importantes
+   3. plota o grafo
+   4. plota o gráfico de barras VERTICAL
+   5. plota o gráfico de barras HORIZONTAL
+   6. pós-carregamento
+  -----------------------------------------------------------------------------
 */ 
 
-// importações de módulos -----------------------------------------------------
+// 1. importações de módulos --------------------------------------------------
 import { $, $$, print } from './src/modules/Atalhos.js'; // importa atalhos $, $$ e print()
 import help from './src/modules/Help.js';                // importa ajuda, ex: help('grafo');
 import Grafo from './src/modules/Grafo.js';              // importa módulo Grafo()
@@ -20,14 +29,14 @@ import './node_modules/d3/dist/d3.min.js'; // local - requer npm install d3
 import './node_modules/bootstrap/dist/js/bootstrap.bundle.js';  // importa bootstrap
 
 
-// variáveis ------------------------------------------------------------------
+// 2. variáveis importantes ---------------------------------------------------
 const altura = 600;
 
 // dados 
 const dados = await d3.json('./src/data/db_miserables.js');
 
 
-// plota o grafo => modules/Grafo.js ------------------------------------------
+// 3. plota o grafo => modules/Grafo.js ---------------------------------------
 Grafo(
   dados, 
   {
@@ -47,7 +56,7 @@ Grafo(
 );
 
 
-// plota o gráfico de barras VERTICAL => modules/Barras.js --------------------
+// 4. plota o gráfico de barras VERTICAL => modules/Barras.js -----------------
 Barras(
   dados.nodes, // dados
   { // config
@@ -67,7 +76,7 @@ Barras(
   }
 )
 
-// plota o gráfico de barras => modules/Barras.js HORIZONTAL ------------------
+// 5. plota o gráfico de barras HORIZONTAL => modules/Barras.js ---------------
 Barras(
   dados.nodes, // dados
   { // config
@@ -85,11 +94,11 @@ Barras(
     rotulo_x: "Valor",
     tamanho_fonte:100,
     color: "steelblue",
-    tamanho_barra_horizontal:10
+    tamanho_barra_horizontal:25
   }
 )
 
-// pós-carregamento -----------------------------------------------------------
+// 6. pós-carregamento --------------------------------------------------------
 function carrega_tooltips() {
   let tooltips = d3.selectAll('.vertices circle,.arestas line')
     .attr("data-toggle", "tooltip") // atribui o tooltip
